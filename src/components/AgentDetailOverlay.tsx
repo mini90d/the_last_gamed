@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { X, CheckCircle2, AlertCircle, Loader2, Copy, Check } from 'lucide-react';
 import type { AgentModule } from '../types';
 import * as Icons from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
@@ -39,10 +39,20 @@ const getSimulatedContent = (id: string) => {
 };
 
 export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, onClose }) => {
+  const [copied, setCopied] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const IconComponent = (Icons as any)[agent.icon];
   const content = getSimulatedContent(agent.id);
   const { updateAgentStatus } = useAppStore();
+
+  const handleCopy = () => {
+    const textToCopy = content.body || (content.items ? content.items.join('\n') : '');
+    if (textToCopy) {
+      navigator.clipboard.writeText(textToCopy);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   React.useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -70,7 +80,7 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
         <button
           onClick={onClose}
           aria-label="Close details"
-          className="absolute right-6 top-6 p-2 rounded-xl hover:bg-white/5 transition-colors text-white/40 hover:text-white"
+          className="absolute right-6 top-6 p-2 rounded-xl hover:bg-white/5 transition-colors text-white/40 hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
         >
           <X size={24} />
         </button>
@@ -86,13 +96,23 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-2xl bg-white/5 p-6 border border-white/5">
-            <h3 className="text-indigo-400 font-semibold mb-4 flex items-center gap-2">
-              {agent.status === 'completed' ? <CheckCircle2 size={18} /> :
-               agent.status === 'working' ? <Loader2 size={18} className="animate-spin" /> :
-               <AlertCircle size={18} />}
-              {content.title}
-            </h3>
+          <div className="relative group/content rounded-2xl bg-white/5 p-6 border border-white/5">
+            <div className="flex items-start justify-between mb-4">
+              <h3 className="text-indigo-400 font-semibold flex items-center gap-2">
+                {agent.status === 'completed' ? <CheckCircle2 size={18} /> :
+                 agent.status === 'working' ? <Loader2 size={18} className="animate-spin" /> :
+                 <AlertCircle size={18} />}
+                {content.title}
+              </h3>
+              <button
+                onClick={handleCopy}
+                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-white/40 hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                aria-label="Copy output to clipboard"
+                title="Copy to clipboard"
+              >
+                {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
+              </button>
+            </div>
 
             {content.body && (
               <p className="text-white/80 leading-relaxed font-mono text-sm bg-black/30 p-4 rounded-xl border border-white/5">
@@ -119,14 +139,14 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
                   updateAgentStatus(agent.id, 'completed');
                   onClose();
                 }}
-                className="flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition-colors"
+                className="flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
               >
                 Approve & Continue
               </button>
             )}
             <button
               onClick={onClose}
-              className="flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-colors border border-white/5"
+              className="flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-colors border border-white/5 outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             >
               Dismiss
             </button>
