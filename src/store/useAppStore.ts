@@ -1,7 +1,8 @@
 import { create } from 'zustand';
-import type { AppState, ProductType, AgentStatus, AgentModule } from '../types';
+import type { AppState, ProductType, AgentStatus, AgentModule, BrandTheme } from '../types';
 
 const initialAgents: AgentModule[] = [
+  { id: 'preview', name: 'Master Preview', icon: 'Play', description: 'Real-time asset assembly', status: 'idle', gridSpan: 'md:col-span-2 md:row-span-2' },
   { id: 'discovery', name: 'Discovery', icon: 'Search', description: 'Viral trends & ideas', status: 'idle', gridSpan: 'md:col-span-2 md:row-span-1' },
   { id: 'scripting', name: 'Scripting', icon: 'FileText', description: 'Storyboards & scripts', status: 'idle', gridSpan: 'md:col-span-1 md:row-span-2' },
   { id: 'consistency', name: 'Consistency', icon: 'UserCheck', description: 'Character & style sync', status: 'idle', gridSpan: 'md:col-span-1 md:row-span-1' },
@@ -23,6 +24,8 @@ export const useAppStore = create<AppState>((set) => ({
   agents: initialAgents,
   activeAgentId: null,
   setActiveAgentId: (id: string | null) => set({ activeAgentId: id }),
+  theme: { name: 'Cyberpunk', primary: 'indigo' },
+  setTheme: (theme: BrandTheme) => set({ theme }),
   updateAgentStatus: (id: string, status: AgentStatus) =>
     set((state) => {
       const updatedAgents = state.agents.map((agent) =>

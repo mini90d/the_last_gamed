@@ -2,6 +2,7 @@ import { Dashboard } from './components/Dashboard'
 import { ProductSelector } from './components/ProductSelector'
 import { Minimap } from './components/Minimap'
 import { WorkflowPaths } from './components/WorkflowPaths'
+import { GrandFinale } from './components/GrandFinale'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <ProductSelector />
       <Dashboard />
       <Minimap />
+      <GrandFinale />
     </div>
   )
 }

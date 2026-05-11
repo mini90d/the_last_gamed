@@ -13,6 +13,11 @@ export interface AgentModule {
   output?: any;
 }
 
+export interface BrandTheme {
+  name: string;
+  primary: string;
+}
+
 export interface AppState {
   productType: ProductType | null;
   setProductType: (type: ProductType | null) => void;
@@ -22,4 +27,6 @@ export interface AppState {
   updateAgentOutput: (id: string, output: any) => void;
   activeAgentId: string | null;
   setActiveAgentId: (id: string | null) => void;
+  theme: BrandTheme;
+  setTheme: (theme: BrandTheme) => void;
 }

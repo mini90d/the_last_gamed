@@ -5,3 +5,7 @@
 ## 2024-05-11 - [Contextual Overlays & Focus]
 **Learning:** Large overlays in modular dashboards need explicit focus management and keyboard shortcuts (ESC) to avoid trapping users.
 **Action:** Added global 'Escape' key listener to the `AgentDetailOverlay` and ensured all modal triggers (Bento Tiles, Minimap dots) are accessible buttons.
+
+## 2024-05-11 - [Thematic Consistency]
+**Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
+**Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.

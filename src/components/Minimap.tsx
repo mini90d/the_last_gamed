@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Map, X, Info, CheckCircle2, Loader2, Circle } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { cn } from '../lib/utils';
+import { BrandKit } from './BrandKit';
 
 export const Minimap: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -47,6 +48,11 @@ export const Minimap: React.FC = () => {
                   title={agent.name}
                 />
               ))}
+            </div>
+
+            {/* Brand Kit */}
+            <div className="mb-6">
+              <BrandKit />
             </div>
 
             {/* Legend */}

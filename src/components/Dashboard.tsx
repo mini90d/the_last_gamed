@@ -3,6 +3,7 @@ import { useAppStore } from '../store/useAppStore';
 import { BentoTile } from './BentoTile';
 import { AgentDetailOverlay } from './AgentDetailOverlay';
 import { AnimatePresence } from 'framer-motion';
+import * as Icons from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
   const { agents, productType, setProductType, activeAgentId, setActiveAgentId } = useAppStore();
@@ -17,12 +18,21 @@ export const Dashboard: React.FC = () => {
           <p className="mt-2 text-white/60">Your AI agent bento box for digital asset creation.</p>
         </div>
         {productType && (
-          <button
-            onClick={() => setProductType(null)}
-            className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm"
-          >
-            Change Product: <span className="text-indigo-400 capitalize">{productType.replace('-', ' ')}</span>
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm flex items-center gap-2"
+            >
+              <Icons.RotateCcw size={14} />
+              Reset
+            </button>
+            <button
+              onClick={() => setProductType(null)}
+              className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm"
+            >
+              Change Product: <span className="text-indigo-400 capitalize">{productType.replace('-', ' ')}</span>
+            </button>
+          </div>
         )}
       </header>
 

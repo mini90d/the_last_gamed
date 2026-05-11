@@ -1,14 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useAppStore } from '../store/useAppStore';
 
 export const WorkflowPaths: React.FC = () => {
+  const { theme } = useAppStore();
+
+  const themeHex = {
+    indigo: '#6366f1',
+    orange: '#f97316',
+    emerald: '#10b881',
+    rose: '#f43f5e',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || '#6366f1';
+
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
       <svg className="h-full w-full">
         <defs>
           <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="transparent" />
-            <stop offset="50%" stopColor="#6366f1" />
+            <stop offset="50%" stopColor={themeHex} />
             <stop offset="100%" stopColor="transparent" />
           </linearGradient>
         </defs>
@@ -53,7 +63,7 @@ export const WorkflowPaths: React.FC = () => {
 
         <motion.circle
           r="4"
-          fill="#6366f1"
+          fill={themeHex}
           initial={{ offsetDistance: "0%" }}
           animate={{ offsetDistance: "100%" }}
           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
