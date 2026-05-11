@@ -48,6 +48,9 @@ export const ProductSelector: React.FC = () => {
                 // Demo start
                 setTimeout(() => {
                   useAppStore.getState().updateAgentStatus('discovery', 'working');
+                  setTimeout(() => {
+                    useAppStore.getState().updateAgentStatus('discovery', 'completed');
+                  }, 2000);
                 }, 500);
               }}
               className="group flex items-start gap-6 p-8 rounded-3xl border border-white/10 bg-white/5 text-left transition-all hover:bg-white/10 hover:border-indigo-500/50"

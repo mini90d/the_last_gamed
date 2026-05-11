@@ -15,11 +15,7 @@ export const BentoTile: React.FC<BentoTileProps> = ({ agent }) => {
   const IconComponent = (Icons as any)[agent.icon];
 
   const handleClick = () => {
-    if (agent.status === 'working') {
-      useAppStore.getState().updateAgentStatus(agent.id, 'completed');
-    } else if (agent.status === 'idle' || agent.status === 'completed') {
-      useAppStore.getState().updateAgentStatus(agent.id, 'working');
-    }
+    useAppStore.getState().setActiveAgentId(agent.id);
   };
 
   return (

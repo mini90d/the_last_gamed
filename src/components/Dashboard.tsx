@@ -1,9 +1,13 @@
 import React from 'react';
 import { useAppStore } from '../store/useAppStore';
 import { BentoTile } from './BentoTile';
+import { AgentDetailOverlay } from './AgentDetailOverlay';
+import { AnimatePresence } from 'framer-motion';
 
 export const Dashboard: React.FC = () => {
-  const { agents, productType, setProductType } = useAppStore();
+  const { agents, productType, setProductType, activeAgentId, setActiveAgentId } = useAppStore();
+
+  const activeAgent = agents.find(a => a.id === activeAgentId);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
@@ -27,6 +31,15 @@ export const Dashboard: React.FC = () => {
           <BentoTile key={agent.id} agent={agent} />
         ))}
       </div>
+
+      <AnimatePresence>
+        {activeAgent && (
+          <AgentDetailOverlay
+            agent={activeAgent}
+            onClose={() => setActiveAgentId(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

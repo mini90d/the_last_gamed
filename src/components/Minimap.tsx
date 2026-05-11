@@ -6,7 +6,7 @@ import { cn } from '../lib/utils';
 
 export const Minimap: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const { agents } = useAppStore();
+  const { agents, setActiveAgentId } = useAppStore();
 
   return (
     <div className="fixed bottom-8 right-8 z-40">
@@ -25,6 +25,7 @@ export const Minimap: React.FC = () => {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
+                aria-label="Close minimap"
                 className="p-1 rounded-lg hover:bg-white/5 text-white/40 hover:text-white transition-colors"
               >
                 <X size={16} />
@@ -34,10 +35,11 @@ export const Minimap: React.FC = () => {
             {/* Minimap Grid */}
             <div className="grid grid-cols-4 gap-1 mb-6 p-2 bg-white/5 rounded-xl border border-white/5">
               {agents.map((agent) => (
-                <div
+                <button
                   key={agent.id}
+                  onClick={() => setActiveAgentId(agent.id)}
                   className={cn(
-                    "h-2 rounded-full transition-all duration-500",
+                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10",
                     agent.status === 'idle' ? "bg-white/10" :
                     agent.status === 'working' ? "bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]" :
                     agent.status === 'completed' ? "bg-green-400" : "bg-red-400"
