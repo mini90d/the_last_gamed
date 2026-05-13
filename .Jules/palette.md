@@ -9,3 +9,11 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2026-05-13 - [Thematic Consistency & Accessibility]
+**Learning:** Hardcoded brand colors in modular dashboard components (like overlays and indicators) break the "theme immersion." Accessibility features like focus-visible rings and ARIA modal attributes are often missing in fast-paced "bento" designs.
+**Action:** Always derive primary action colors and interaction rings from the global theme state. Implement standard ARIA modal patterns (, ) and  styles on all interactive dashboard elements.
+
+## 2025-05-15 - [Thematic Consistency & Accessibility]
+**Learning:** Hardcoded brand colors in modular dashboard components (like overlays and indicators) break the "theme immersion." Accessibility features like focus-visible rings and ARIA modal attributes are often missing in fast-paced "bento" designs.
+**Action:** Always derive primary action colors and interaction rings from the global theme state. Implement standard ARIA modal patterns (role="dialog", aria-labelledby) and focus-visible styles on all interactive dashboard elements.
