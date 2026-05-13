@@ -1,11 +1,22 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAppStore } from '../store/useAppStore';
+import { cn } from '../lib/utils';
 
 interface FlowIndicatorProps {
   status: 'working' | 'completed';
 }
 
 export const FlowIndicator: React.FC<FlowIndicatorProps> = ({ status }) => {
+  const { theme } = useAppStore();
+
+  const themeColors = {
+    indigo: { border: 'border-indigo-500', particle: 'via-indigo-400' },
+    orange: { border: 'border-orange-500', particle: 'via-orange-400' },
+    emerald: { border: 'border-emerald-500', particle: 'via-emerald-400' },
+    rose: { border: 'border-rose-500', particle: 'via-rose-400' },
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || { border: 'border-indigo-500', particle: 'via-indigo-400' };
+
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <AnimatePresence>
@@ -17,7 +28,7 @@ export const FlowIndicator: React.FC<FlowIndicatorProps> = ({ status }) => {
               animate={{ scale: 1.5, opacity: [0, 0.2, 0] }}
               exit={{ opacity: 0 }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="absolute inset-0 border-2 border-indigo-500 rounded-3xl"
+              className={cn("absolute inset-0 border-2 rounded-3xl", themeColors.border)}
             />
             {/* Flowing particles */}
             {[...Array(5)].map((_, i) => (
@@ -31,7 +42,7 @@ export const FlowIndicator: React.FC<FlowIndicatorProps> = ({ status }) => {
                   delay: i * 0.4,
                   ease: "linear"
                 }}
-                className="absolute h-1 w-8 bg-gradient-to-r from-transparent via-indigo-400 to-transparent blur-sm"
+                className={cn("absolute h-1 w-8 bg-gradient-to-r from-transparent to-transparent blur-sm", themeColors.particle)}
               />
             ))}
           </>
