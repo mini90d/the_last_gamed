@@ -4,11 +4,19 @@ import { BentoTile } from './BentoTile';
 import { AgentDetailOverlay } from './AgentDetailOverlay';
 import { AnimatePresence } from 'framer-motion';
 import * as Icons from 'lucide-react';
+import { cn } from '../lib/utils';
 
 export const Dashboard: React.FC = () => {
-  const { agents, productType, setProductType, activeAgentId, setActiveAgentId } = useAppStore();
+  const { agents, productType, setProductType, activeAgentId, setActiveAgentId, theme } = useAppStore();
 
   const activeAgent = agents.find(a => a.id === activeAgentId);
+
+  const themeRing = {
+    indigo: 'focus-visible:ring-indigo-500',
+    orange: 'focus-visible:ring-orange-500',
+    emerald: 'focus-visible:ring-emerald-500',
+    rose: 'focus-visible:ring-rose-500',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'focus-visible:ring-indigo-500';
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
@@ -21,14 +29,14 @@ export const Dashboard: React.FC = () => {
           <div className="flex gap-2">
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm flex items-center gap-2"
+              className={cn("px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm flex items-center gap-2 outline-none focus-visible:ring-2", themeRing)}
             >
               <Icons.RotateCcw size={14} />
               Reset
             </button>
             <button
               onClick={() => setProductType(null)}
-              className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm"
+              className={cn("px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm outline-none focus-visible:ring-2", themeRing)}
             >
               Change Product: <span className="text-indigo-400 capitalize">{productType.replace('-', ' ')}</span>
             </button>
