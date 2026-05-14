@@ -4,6 +4,7 @@ import { X, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import type { AgentModule } from '../types';
 import * as Icons from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
+import { cn } from '../lib/utils';
 
 interface AgentDetailOverlayProps {
   agent: AgentModule;
@@ -42,7 +43,14 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const IconComponent = (Icons as any)[agent.icon];
   const content = getSimulatedContent(agent.id);
-  const { updateAgentStatus } = useAppStore();
+  const { updateAgentStatus, theme } = useAppStore();
+
+  const themeRing = {
+    indigo: 'focus-visible:ring-indigo-500',
+    orange: 'focus-visible:ring-orange-500',
+    emerald: 'focus-visible:ring-emerald-500',
+    rose: 'focus-visible:ring-rose-500',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'focus-visible:ring-indigo-500';
 
   React.useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -70,7 +78,7 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
         <button
           onClick={onClose}
           aria-label="Close details"
-          className="absolute right-6 top-6 p-2 rounded-xl hover:bg-white/5 transition-colors text-white/40 hover:text-white"
+          className={cn("absolute right-6 top-6 p-2 rounded-xl hover:bg-white/5 transition-colors text-white/40 hover:text-white outline-none focus-visible:ring-2", themeRing)}
         >
           <X size={24} />
         </button>
@@ -119,14 +127,14 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
                   updateAgentStatus(agent.id, 'completed');
                   onClose();
                 }}
-                className="flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition-colors"
+                className={cn("flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition-colors outline-none focus-visible:ring-2", themeRing)}
               >
                 Approve & Continue
               </button>
             )}
             <button
               onClick={onClose}
-              className="flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-colors border border-white/5"
+              className={cn("flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-colors border border-white/5 outline-none focus-visible:ring-2", themeRing)}
             >
               Dismiss
             </button>
