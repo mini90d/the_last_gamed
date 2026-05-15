@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2025-05-15 - [Accessible Hover Overlays]
+**Learning:** Decorative overlays that appear on hover (like video controls) are "hidden" from keyboard users. Relying on `group-hover` without `group-focus-within` makes critical functionality inaccessible.
+**Action:** Always pair `group-hover` with `group-focus-within` for interactive overlays. Use theme-aware focus rings (`focus-visible:ring-2`) and semantic `<button>` elements with `aria-label` for all icon-based controls.
