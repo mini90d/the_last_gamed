@@ -26,8 +26,22 @@ export const MasterPreviewer: React.FC = () => {
     rose: 'bg-rose-500',
   }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'bg-indigo-500';
 
+  const themeHoverText = {
+    indigo: 'hover:text-indigo-400 focus-visible:text-indigo-400',
+    orange: 'hover:text-orange-400 focus-visible:text-orange-400',
+    emerald: 'hover:text-emerald-400 focus-visible:text-emerald-400',
+    rose: 'hover:text-rose-400 focus-visible:text-rose-400',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'hover:text-indigo-400 focus-visible:text-indigo-400';
+
+  const themeFocusRing = {
+    indigo: 'focus-visible:ring-indigo-500',
+    orange: 'focus-visible:ring-orange-500',
+    emerald: 'focus-visible:ring-emerald-500',
+    rose: 'focus-visible:ring-rose-500',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'focus-visible:ring-indigo-500';
+
   return (
-    <div className="relative h-full w-full rounded-3xl overflow-hidden bg-black border border-white/10 group">
+    <div className="relative h-full w-full rounded-3xl overflow-hidden bg-black border border-white/10 group focus-within:ring-2 focus-within:ring-white/20">
       {/* Video Preview Area */}
       <div className="absolute inset-0 flex items-center justify-center">
         <AnimatePresence mode="wait">
@@ -55,9 +69,16 @@ export const MasterPreviewer: React.FC = () => {
                 alt="AI Generated Preview"
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                 <div className={cn("p-6 rounded-full text-white shadow-2xl", themeBg)}>
+                 <button
+                    type="button"
+                    aria-label="Play video"
+                    className={cn(
+                      "p-6 rounded-full text-white shadow-2xl transition-transform hover:scale-110 focus-visible:scale-110 outline-none focus-visible:ring-4 focus-visible:ring-white/50 cursor-pointer",
+                      themeBg
+                    )}
+                 >
                     <Play size={48} fill="white" />
-                 </div>
+                 </button>
               </div>
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="h-1 w-full bg-white/20 rounded-full overflow-hidden">
@@ -108,13 +129,31 @@ export const MasterPreviewer: React.FC = () => {
       </div>
 
       {/* Controls Overlay */}
-      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
         <div className="flex items-center justify-between">
            <div className="flex gap-4">
-              <Play size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-              <Volume2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+              <button
+                type="button"
+                aria-label="Play"
+                className={cn("text-white transition-colors cursor-pointer outline-none focus-visible:ring-2 p-1 rounded-md", themeHoverText, themeFocusRing)}
+              >
+                <Play size={18} />
+              </button>
+              <button
+                type="button"
+                aria-label="Volume"
+                className={cn("text-white transition-colors cursor-pointer outline-none focus-visible:ring-2 p-1 rounded-md", themeHoverText, themeFocusRing)}
+              >
+                <Volume2 size={18} />
+              </button>
            </div>
-           <Maximize2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+           <button
+             type="button"
+             aria-label="Fullscreen"
+             className={cn("text-white transition-colors cursor-pointer outline-none focus-visible:ring-2 p-1 rounded-md", themeHoverText, themeFocusRing)}
+           >
+             <Maximize2 size={18} />
+           </button>
         </div>
       </div>
     </div>
