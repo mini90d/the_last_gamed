@@ -25,6 +25,7 @@ export const Minimap: React.FC = () => {
                 <span>Agent Workflow</span>
               </div>
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close minimap"
                 className="p-1 rounded-lg hover:bg-white/5 text-white/40 hover:text-white transition-colors"
@@ -37,15 +38,17 @@ export const Minimap: React.FC = () => {
             <div className="grid grid-cols-4 gap-1 mb-6 p-2 bg-white/5 rounded-xl border border-white/5">
               {agents.map((agent) => (
                 <button
+                  type="button"
                   key={agent.id}
                   onClick={() => setActiveAgentId(agent.id)}
                   className={cn(
-                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10",
+                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10 outline-none focus-visible:ring-1 ring-white/50",
                     agent.status === 'idle' ? "bg-white/10" :
                     agent.status === 'working' ? "bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]" :
                     agent.status === 'completed' ? "bg-green-400" : "bg-red-400"
                   )}
                   title={agent.name}
+                  aria-label={`Agent ${agent.name}: ${agent.status}`}
                 />
               ))}
             </div>
@@ -80,12 +83,13 @@ export const Minimap: React.FC = () => {
           </motion.div>
         ) : (
           <motion.button
+            type="button"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 font-medium"
+            className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 font-medium outline-none focus-visible:ring-2 ring-indigo-400"
           >
             <Map size={20} />
             <span>Show Map</span>

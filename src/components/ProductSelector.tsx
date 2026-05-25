@@ -39,6 +39,7 @@ export const ProductSelector: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {products.map((p, i) => (
             <motion.button
+              type="button"
               key={p.type}
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}

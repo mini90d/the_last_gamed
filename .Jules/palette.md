@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2024-05-11 - [Keyboard-Accessible Overlays]
+**Learning:** Hover-triggered controls in a high-motion dashboard must be mirror-accessible via focus to avoid locking out keyboard users.
+**Action:** Implemented `group-focus-within` on the Master Previewer control bar and converted static icons to semantic buttons with ARIA labels and focus rings across the dashboard.

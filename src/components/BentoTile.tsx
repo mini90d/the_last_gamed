@@ -37,12 +37,12 @@ export const BentoTile: React.FC<BentoTileProps> = ({ agent }) => {
 
   return (
     <motion.button
+      type="button"
       layout
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ y: -4 }}
       onClick={handleClick}
-      onKeyDown={(e) => e.key === 'Enter' && handleClick()}
       aria-label={`Agent ${agent.name}: ${agent.status}. ${agent.description}`}
       className={cn(
         "relative overflow-hidden cursor-pointer rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors hover:bg-white/10 text-left outline-none focus-visible:ring-2",
