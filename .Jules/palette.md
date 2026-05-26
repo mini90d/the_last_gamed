@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2024-05-11 - [Hidden Overlays & Keyboard Navigation]
+**Learning:** Overlays that only appear on hover (like video controls) are invisible to keyboard users. Relying purely on `aria-label` for screen readers is not enough if the interactive elements aren't visually accessible during navigation.
+**Action:** Used `group-focus-within:translate-y-0` (paired with `group-hover`) in `MasterPreviewer.tsx` to ensure controls are revealed when tabbed into. Always pair `aria-label` with `title` for compact interactive status dots to provide both screen reader support and mouse tooltips without redundant text.
