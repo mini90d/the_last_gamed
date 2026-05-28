@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2026-05-28 - [Accessible Media Controls & Focus Persistence]
+**Learning:** In bento-style dashboards with hover-triggered overlays (like the Master Previewer), controls must be keyboard-accessible and ensure the overlay remains persistent when focused. Using raw icons for controls excludes screen reader and keyboard users.
+**Action:** Always wrap media controls in semantic `<button type="button" />` elements with clear `aria-label` attributes. Use `group-focus-within` on overlay containers to keep them visible during keyboard navigation. Implement theme-aware focus rings using `focus-visible:ring-2` for consistent high-visibility feedback.
