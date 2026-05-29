@@ -55,9 +55,13 @@ export const MasterPreviewer: React.FC = () => {
                 alt="AI Generated Preview"
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                 <div className={cn("p-6 rounded-full text-white shadow-2xl", themeBg)}>
+                 <button
+                  type="button"
+                  aria-label="Play preview"
+                  className={cn("p-6 rounded-full text-white shadow-2xl transition-transform hover:scale-110 active:scale-95 focus-visible:ring-4 focus-visible:ring-white/50 outline-none", themeBg)}
+                 >
                     <Play size={48} fill="white" />
-                 </div>
+                 </button>
               </div>
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="h-1 w-full bg-white/20 rounded-full overflow-hidden">
@@ -108,13 +112,31 @@ export const MasterPreviewer: React.FC = () => {
       </div>
 
       {/* Controls Overlay */}
-      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 focus-within:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
         <div className="flex items-center justify-between">
            <div className="flex gap-4">
-              <Play size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-              <Volume2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+              <button
+                type="button"
+                aria-label="Play"
+                className="p-1 rounded-lg text-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50 outline-none transition-colors"
+              >
+                <Play size={18} fill="currentColor" />
+              </button>
+              <button
+                type="button"
+                aria-label="Toggle mute"
+                className="p-1 rounded-lg text-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50 outline-none transition-colors"
+              >
+                <Volume2 size={18} fill="currentColor" />
+              </button>
            </div>
-           <Maximize2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+           <button
+            type="button"
+            aria-label="Fullscreen"
+            className="p-1 rounded-lg text-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50 outline-none transition-colors"
+           >
+             <Maximize2 size={18} fill="currentColor" />
+           </button>
         </div>
       </div>
     </div>
