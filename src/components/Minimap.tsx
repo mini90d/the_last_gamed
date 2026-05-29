@@ -46,6 +46,7 @@ export const Minimap: React.FC = () => {
                     agent.status === 'completed' ? "bg-green-400" : "bg-red-400"
                   )}
                   title={agent.name}
+                  aria-label={`${agent.name}: ${agent.status}`}
                 />
               ))}
             </div>
