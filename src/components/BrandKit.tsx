@@ -19,11 +19,12 @@ export const BrandKit: React.FC = () => {
       <div className="flex gap-2">
         {themes.map((t) => (
           <button
+            type="button"
             key={t.name}
             onClick={() => setTheme(t)}
             title={t.name}
             className={cn(
-              "h-6 w-6 rounded-full border-2 transition-all",
+              "h-6 w-6 rounded-full border-2 transition-all focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black outline-none",
               theme.name === t.name ? "border-white scale-110" : "border-transparent",
               t.primary === 'indigo' && "bg-indigo-500",
               t.primary === 'orange' && "bg-orange-500",

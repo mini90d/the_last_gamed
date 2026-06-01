@@ -68,6 +68,7 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          type="button"
           onClick={onClose}
           aria-label="Close details"
           className="absolute right-6 top-6 p-2 rounded-xl hover:bg-white/5 transition-colors text-white/40 hover:text-white"
@@ -115,6 +116,7 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
           <div className="flex gap-4">
             {agent.status === 'working' && (
               <button
+                type="button"
                 onClick={() => {
                   updateAgentStatus(agent.id, 'completed');
                   onClose();
@@ -125,6 +127,7 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
               </button>
             )}
             <button
+              type="button"
               onClick={onClose}
               className="flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-colors border border-white/5"
             >
