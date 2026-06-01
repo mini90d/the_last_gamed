@@ -20,6 +20,7 @@ export const Dashboard: React.FC = () => {
         {productType && (
           <div className="flex gap-2">
             <button
+              type="button"
               onClick={() => window.location.reload()}
               className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm flex items-center gap-2"
             >
@@ -27,6 +28,7 @@ export const Dashboard: React.FC = () => {
               Reset
             </button>
             <button
+              type="button"
               onClick={() => setProductType(null)}
               className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm"
             >
