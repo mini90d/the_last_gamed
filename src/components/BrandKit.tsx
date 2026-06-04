@@ -20,10 +20,11 @@ export const BrandKit: React.FC = () => {
         {themes.map((t) => (
           <button
             key={t.name}
+            type="button"
             onClick={() => setTheme(t)}
             title={t.name}
             className={cn(
-              "h-6 w-6 rounded-full border-2 transition-all",
+              "h-6 w-6 rounded-full border-2 transition-all outline-none focus-visible:ring-2 focus-visible:ring-white",
               theme.name === t.name ? "border-white scale-110" : "border-transparent",
               t.primary === 'indigo' && "bg-indigo-500",
               t.primary === 'orange' && "bg-orange-500",

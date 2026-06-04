@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2025-05-14 - [Accessible Media Controls & Status Dots]
+**Learning:** Hover-triggered overlays (like video controls) and small status indicators (like minimap dots) are often inaccessible to keyboard users if not explicitly handled.
+**Action:** Used `group-focus-within` to ensure overlays appear when internal controls receive focus. Converted all interactive status indicators from `div` to `button` with `type="button"` and added descriptive `aria-label` attributes combining name and status.
