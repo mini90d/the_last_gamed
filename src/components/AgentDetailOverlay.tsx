@@ -68,9 +68,10 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          type="button"
           onClick={onClose}
           aria-label="Close details"
-          className="absolute right-6 top-6 p-2 rounded-xl hover:bg-white/5 transition-colors text-white/40 hover:text-white"
+          className="absolute right-6 top-6 p-2 rounded-xl hover:bg-white/5 transition-colors text-white/40 hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
         >
           <X size={24} />
         </button>
@@ -115,18 +116,20 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
           <div className="flex gap-4">
             {agent.status === 'working' && (
               <button
+                type="button"
                 onClick={() => {
                   updateAgentStatus(agent.id, 'completed');
                   onClose();
                 }}
-                className="flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition-colors"
+                className="flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 Approve & Continue
               </button>
             )}
             <button
+              type="button"
               onClick={onClose}
-              className="flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-colors border border-white/5"
+              className="flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-colors border border-white/5 outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
             >
               Dismiss
             </button>
