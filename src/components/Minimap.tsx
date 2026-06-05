@@ -38,14 +38,16 @@ export const Minimap: React.FC = () => {
               {agents.map((agent) => (
                 <button
                   key={agent.id}
+                  type="button"
                   onClick={() => setActiveAgentId(agent.id)}
                   className={cn(
-                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10",
+                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10 outline-none focus-visible:ring-1 focus-visible:ring-indigo-500",
                     agent.status === 'idle' ? "bg-white/10" :
                     agent.status === 'working' ? "bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]" :
                     agent.status === 'completed' ? "bg-green-400" : "bg-red-400"
                   )}
                   title={agent.name}
+                  aria-label={`Agent ${agent.name}: ${agent.status}`}
                 />
               ))}
             </div>

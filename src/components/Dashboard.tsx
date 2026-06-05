@@ -20,15 +20,19 @@ export const Dashboard: React.FC = () => {
         {productType && (
           <div className="flex gap-2">
             <button
+              type="button"
+              aria-label="Reset application"
               onClick={() => window.location.reload()}
-              className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm flex items-center gap-2"
+              className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none"
             >
               <Icons.RotateCcw size={14} />
               Reset
             </button>
             <button
+              type="button"
+              aria-label={`Change product from ${productType.replace('-', ' ')}`}
               onClick={() => setProductType(null)}
-              className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm"
+              className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none"
             >
               Change Product: <span className="text-indigo-400 capitalize">{productType.replace('-', ' ')}</span>
             </button>
