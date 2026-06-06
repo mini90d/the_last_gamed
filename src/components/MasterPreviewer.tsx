@@ -108,13 +108,31 @@ export const MasterPreviewer: React.FC = () => {
       </div>
 
       {/* Controls Overlay */}
-      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
         <div className="flex items-center justify-between">
            <div className="flex gap-4">
-              <Play size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-              <Volume2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+              <button
+                type="button"
+                aria-label="Play video"
+                className="text-white hover:text-indigo-400 transition-colors focus-visible:ring-1 focus-visible:ring-white outline-none rounded-md p-1"
+              >
+                <Play size={18} fill="currentColor" />
+              </button>
+              <button
+                type="button"
+                aria-label="Toggle mute"
+                className="text-white hover:text-indigo-400 transition-colors focus-visible:ring-1 focus-visible:ring-white outline-none rounded-md p-1"
+              >
+                <Volume2 size={18} />
+              </button>
            </div>
-           <Maximize2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+           <button
+             type="button"
+             aria-label="Maximize"
+             className="text-white hover:text-indigo-400 transition-colors focus-visible:ring-1 focus-visible:ring-white outline-none rounded-md p-1"
+           >
+             <Maximize2 size={18} />
+           </button>
         </div>
       </div>
     </div>
