@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2025-05-14 - [Keyboard Accessibility for Hover Overlays]
+**Learning:** In modular "Bento" dashboards, controls often hide behind hover states to reduce visual noise. This completely breaks keyboard accessibility unless the container uses `group-focus-within` to maintain visibility when internal elements receive focus.
+**Action:** Applied `group-focus-within:translate-y-0` to the `MasterPreviewer` controls overlay and ensured all icon-only actions are semantic `<button type="button">` elements with precise ARIA labels.
