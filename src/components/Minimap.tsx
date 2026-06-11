@@ -7,7 +7,14 @@ import { BrandKit } from './BrandKit';
 
 export const Minimap: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const { agents, setActiveAgentId } = useAppStore();
+  const { agents, setActiveAgentId, theme } = useAppStore();
+
+  const themeRing = {
+    indigo: 'focus-visible:ring-indigo-500',
+    orange: 'focus-visible:ring-orange-500',
+    emerald: 'focus-visible:ring-emerald-500',
+    rose: 'focus-visible:ring-rose-500',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'focus-visible:ring-indigo-500';
 
   return (
     <div className="fixed bottom-8 right-8 z-40">
@@ -25,9 +32,10 @@ export const Minimap: React.FC = () => {
                 <span>Agent Workflow</span>
               </div>
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close minimap"
-                className="p-1 rounded-lg hover:bg-white/5 text-white/40 hover:text-white transition-colors"
+                className={cn("p-1 rounded-lg hover:bg-white/5 text-white/40 hover:text-white transition-colors outline-none focus-visible:ring-2", themeRing)}
               >
                 <X size={16} />
               </button>
@@ -38,14 +46,17 @@ export const Minimap: React.FC = () => {
               {agents.map((agent) => (
                 <button
                   key={agent.id}
+                  type="button"
                   onClick={() => setActiveAgentId(agent.id)}
                   className={cn(
-                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10",
+                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10 outline-none focus-visible:ring-2",
+                    themeRing,
                     agent.status === 'idle' ? "bg-white/10" :
                     agent.status === 'working' ? "bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]" :
                     agent.status === 'completed' ? "bg-green-400" : "bg-red-400"
                   )}
                   title={agent.name}
+                  aria-label={`${agent.name} status: ${agent.status}`}
                 />
               ))}
             </div>
@@ -84,8 +95,9 @@ export const Minimap: React.FC = () => {
             animate={{ scale: 1, opacity: 1 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            type="button"
             onClick={() => setIsOpen(true)}
-            className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 font-medium"
+            className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 font-medium outline-none focus-visible:ring-2 focus-visible:ring-white/50"
           >
             <Map size={20} />
             <span>Show Map</span>
