@@ -7,7 +7,14 @@ import { BrandKit } from './BrandKit';
 
 export const Minimap: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const { agents, setActiveAgentId } = useAppStore();
+  const { agents, setActiveAgentId, theme } = useAppStore();
+
+  const themeRing = {
+    indigo: 'ring-indigo-500',
+    orange: 'ring-orange-500',
+    emerald: 'ring-emerald-500',
+    rose: 'ring-rose-500',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'ring-indigo-500';
 
   return (
     <div className="fixed bottom-8 right-8 z-40">
@@ -25,6 +32,7 @@ export const Minimap: React.FC = () => {
                 <span>Agent Workflow</span>
               </div>
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close minimap"
                 className="p-1 rounded-lg hover:bg-white/5 text-white/40 hover:text-white transition-colors"
@@ -37,15 +45,18 @@ export const Minimap: React.FC = () => {
             <div className="grid grid-cols-4 gap-1 mb-6 p-2 bg-white/5 rounded-xl border border-white/5">
               {agents.map((agent) => (
                 <button
+                  type="button"
                   key={agent.id}
                   onClick={() => setActiveAgentId(agent.id)}
                   className={cn(
-                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10",
+                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10 outline-none focus-visible:ring-1",
+                    themeRing,
                     agent.status === 'idle' ? "bg-white/10" :
                     agent.status === 'working' ? "bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]" :
                     agent.status === 'completed' ? "bg-green-400" : "bg-red-400"
                   )}
                   title={agent.name}
+                  aria-label={agent.name}
                 />
               ))}
             </div>
@@ -80,6 +91,7 @@ export const Minimap: React.FC = () => {
           </motion.div>
         ) : (
           <motion.button
+            type="button"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             whileHover={{ scale: 1.1 }}

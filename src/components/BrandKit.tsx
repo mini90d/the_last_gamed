@@ -19,6 +19,7 @@ export const BrandKit: React.FC = () => {
       <div className="flex gap-2">
         {themes.map((t) => (
           <button
+            type="button"
             key={t.name}
             onClick={() => setTheme(t)}
             title={t.name}
