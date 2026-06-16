@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2025-05-15 - [Semantic Buttons & Focus Visibility]
+**Learning:** Adding focus styles (like `focus-visible:ring`) to elements that are not natively focusable (like `div`) is ineffective unless they are converted to semantic buttons or given a `tabIndex`. Additionally, hover-triggered overlays must be made visible on focus (e.g., `group-focus-within`) to support keyboard-only users.
+**Action:** Standardized all interactive elements (video controls, minimap dots, theme switchers) as semantic `<button type="button">` and ensured `group-focus-within` triggers visibility for transient UI elements.

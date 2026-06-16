@@ -43,17 +43,24 @@ export const GrandFinale: React.FC = () => {
           <p className="mb-12 text-white/50 text-lg">Agents have completed the workflow. Your digital asset is optimized and packaged for delivery.</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <button className={cn("flex items-center justify-center gap-3 py-5 rounded-2xl text-white font-bold text-lg hover:scale-[1.02] transition-transform", themeBg)}>
+            <button
+              type="button"
+              className={cn("flex items-center justify-center gap-3 py-5 rounded-2xl text-white font-bold text-lg hover:scale-[1.02] transition-transform", themeBg)}
+            >
               <Download size={24} />
               Download MP4
             </button>
-            <button className="flex items-center justify-center gap-3 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-lg hover:bg-white/10 transition-colors">
+            <button
+              type="button"
+              className="flex items-center justify-center gap-3 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-lg hover:bg-white/10 transition-colors"
+            >
               <Share2 size={24} />
               Push to YouTube
             </button>
           </div>
 
           <button
+            type="button"
             onClick={() => {
               window.location.reload(); // Simple reset for demo
             }}
