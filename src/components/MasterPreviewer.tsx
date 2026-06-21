@@ -19,6 +19,20 @@ export const MasterPreviewer: React.FC = () => {
     rose: 'text-rose-400',
   }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'text-indigo-400';
 
+  const themeHoverText = {
+    indigo: 'hover:text-indigo-400 focus-visible:text-indigo-400',
+    orange: 'hover:text-orange-400 focus-visible:text-orange-400',
+    emerald: 'hover:text-emerald-400 focus-visible:text-emerald-400',
+    rose: 'hover:text-rose-400 focus-visible:text-rose-400',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'hover:text-indigo-400 focus-visible:text-indigo-400';
+
+  const themeRing = {
+    indigo: 'focus-visible:ring-indigo-500',
+    orange: 'focus-visible:ring-orange-500',
+    emerald: 'focus-visible:ring-emerald-500',
+    rose: 'focus-visible:ring-rose-500',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'focus-visible:ring-indigo-500';
+
   const themeBg = {
     indigo: 'bg-indigo-500',
     orange: 'bg-orange-500',
@@ -108,13 +122,31 @@ export const MasterPreviewer: React.FC = () => {
       </div>
 
       {/* Controls Overlay */}
-      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
         <div className="flex items-center justify-between">
-           <div className="flex gap-4">
-              <Play size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-              <Volume2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+           <div className="flex gap-1">
+              <button
+                type="button"
+                aria-label="Play video"
+                className={cn("p-2 text-white transition-colors rounded-lg outline-none focus-visible:ring-2", themeHoverText, themeRing)}
+              >
+                <Play size={18} fill="currentColor" />
+              </button>
+              <button
+                type="button"
+                aria-label="Toggle mute"
+                className={cn("p-2 text-white transition-colors rounded-lg outline-none focus-visible:ring-2", themeHoverText, themeRing)}
+              >
+                <Volume2 size={18} fill="currentColor" />
+              </button>
            </div>
-           <Maximize2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+           <button
+             type="button"
+             aria-label="Maximize"
+             className={cn("p-2 text-white transition-colors rounded-lg outline-none focus-visible:ring-2", themeHoverText, themeRing)}
+           >
+             <Maximize2 size={18} />
+           </button>
         </div>
       </div>
     </div>

@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2025-05-14 - [Keyboard Accessibility for Hover-Triggered Controls]
+**Learning:** Hidden controls that only appear on hover (like video player overlays) are inaccessible to keyboard and screen reader users unless explicitly handled.
+**Action:** Used `group-focus-within:translate-y-0` in `MasterPreviewer` to ensure controls become visible when any child element receives focus. Wrapped icon-only controls in semantic `<button>` elements with `type="button"` and descriptive `aria-label` attributes.
