@@ -26,6 +26,13 @@ export const MasterPreviewer: React.FC = () => {
     rose: 'bg-rose-500',
   }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'bg-indigo-500';
 
+  const themeHoverText = {
+    indigo: 'hover:text-indigo-400 focus-visible:text-indigo-400',
+    orange: 'hover:text-orange-400 focus-visible:text-orange-400',
+    emerald: 'hover:text-emerald-400 focus-visible:text-emerald-400',
+    rose: 'hover:text-rose-400 focus-visible:text-rose-400',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'hover:text-indigo-400 focus-visible:text-indigo-400';
+
   return (
     <div className="relative h-full w-full rounded-3xl overflow-hidden bg-black border border-white/10 group">
       {/* Video Preview Area */}
@@ -108,13 +115,31 @@ export const MasterPreviewer: React.FC = () => {
       </div>
 
       {/* Controls Overlay */}
-      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
         <div className="flex items-center justify-between">
            <div className="flex gap-4">
-              <Play size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-              <Volume2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+              <button
+                type="button"
+                aria-label="Play preview"
+                className={cn("p-1.5 text-white transition-colors focus-visible:ring-2 ring-white/20 rounded-lg outline-none", themeHoverText)}
+              >
+                <Play size={18} fill="currentColor" />
+              </button>
+              <button
+                type="button"
+                aria-label="Toggle mute"
+                className={cn("p-1.5 text-white transition-colors focus-visible:ring-2 ring-white/20 rounded-lg outline-none", themeHoverText)}
+              >
+                <Volume2 size={18} />
+              </button>
            </div>
-           <Maximize2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+           <button
+             type="button"
+             aria-label="Fullscreen"
+             className={cn("p-1.5 text-white transition-colors focus-visible:ring-2 ring-white/20 rounded-lg outline-none", themeHoverText)}
+           >
+             <Maximize2 size={18} />
+           </button>
         </div>
       </div>
     </div>

@@ -43,21 +43,28 @@ export const GrandFinale: React.FC = () => {
           <p className="mb-12 text-white/50 text-lg">Agents have completed the workflow. Your digital asset is optimized and packaged for delivery.</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <button className={cn("flex items-center justify-center gap-3 py-5 rounded-2xl text-white font-bold text-lg hover:scale-[1.02] transition-transform", themeBg)}>
+            <button
+              type="button"
+              className={cn("flex items-center justify-center gap-3 py-5 rounded-2xl text-white font-bold text-lg hover:scale-[1.02] transition-transform outline-none focus-visible:ring-2 ring-white/50", themeBg)}
+            >
               <Download size={24} />
               Download MP4
             </button>
-            <button className="flex items-center justify-center gap-3 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-lg hover:bg-white/10 transition-colors">
+            <button
+              type="button"
+              className="flex items-center justify-center gap-3 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-lg hover:bg-white/10 transition-colors outline-none focus-visible:ring-2 ring-white/50"
+            >
               <Share2 size={24} />
               Push to YouTube
             </button>
           </div>
 
           <button
+            type="button"
             onClick={() => {
               window.location.reload(); // Simple reset for demo
             }}
-            className="mt-12 flex items-center justify-center gap-2 mx-auto text-white/40 hover:text-white transition-colors"
+            className="mt-12 flex items-center justify-center gap-2 mx-auto text-white/40 hover:text-white transition-colors outline-none focus-visible:ring-2 ring-white/20 rounded-lg p-2"
           >
             <RefreshCcw size={18} />
             Run another project
