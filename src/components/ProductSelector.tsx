@@ -40,6 +40,7 @@ export const ProductSelector: React.FC = () => {
           {products.map((p, i) => (
             <motion.button
               key={p.type}
+              type="button"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: i * 0.1 }}
@@ -53,7 +54,7 @@ export const ProductSelector: React.FC = () => {
                   }, 2000);
                 }, 500);
               }}
-              className="group flex items-start gap-6 p-8 rounded-3xl border border-white/10 bg-white/5 text-left transition-all hover:bg-white/10 hover:border-indigo-500/50"
+              className="group flex items-start gap-6 p-8 rounded-3xl border border-white/10 bg-white/5 text-left transition-all hover:bg-white/10 hover:border-indigo-500/50 outline-none focus-visible:ring-2 ring-indigo-500/50"
             >
               <div className="rounded-2xl bg-indigo-500/20 p-4 text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
                 <p.icon size={32} />
