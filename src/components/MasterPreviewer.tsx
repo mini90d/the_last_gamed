@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Volume2, Maximize2, Loader2, Sparkles } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
@@ -12,19 +12,33 @@ export const MasterPreviewer: React.FC = () => {
   const isProduction = agents.find(a => a.id === 'production')?.status === 'working';
   const isComplete = agents.find(a => a.id === 'distribution')?.status === 'completed';
 
-  const themeText = {
+  const themeText = useMemo(() => ({
     indigo: 'text-indigo-400',
     orange: 'text-orange-400',
     emerald: 'text-emerald-400',
     rose: 'text-rose-400',
-  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'text-indigo-400';
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'text-indigo-400'), [theme.primary]);
 
-  const themeBg = {
+  const themeBg = useMemo(() => ({
     indigo: 'bg-indigo-500',
     orange: 'bg-orange-500',
     emerald: 'bg-emerald-500',
     rose: 'bg-rose-500',
-  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'bg-indigo-500';
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'bg-indigo-500'), [theme.primary]);
+
+  const themeRing = useMemo(() => ({
+    indigo: 'focus-visible:ring-indigo-500',
+    orange: 'focus-visible:ring-orange-500',
+    emerald: 'focus-visible:ring-emerald-500',
+    rose: 'focus-visible:ring-rose-500',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'focus-visible:ring-indigo-500'), [theme.primary]);
+
+  const themeHoverText = useMemo(() => ({
+    indigo: 'hover:text-indigo-400 focus-visible:text-indigo-400',
+    orange: 'hover:text-orange-400 focus-visible:text-orange-400',
+    emerald: 'hover:text-emerald-400 focus-visible:text-emerald-400',
+    rose: 'hover:text-rose-400 focus-visible:text-rose-400',
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'hover:text-indigo-400 focus-visible:text-indigo-400'), [theme.primary]);
 
   return (
     <div className="relative h-full w-full rounded-3xl overflow-hidden bg-black border border-white/10 group">
@@ -108,13 +122,43 @@ export const MasterPreviewer: React.FC = () => {
       </div>
 
       {/* Controls Overlay */}
-      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
         <div className="flex items-center justify-between">
-           <div className="flex gap-4">
-              <Play size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-              <Volume2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-           </div>
-           <Maximize2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+          <div className="flex gap-2">
+            <button
+              type="button"
+              aria-label="Play video"
+              className={cn(
+                "p-2 rounded-lg text-white transition-colors outline-none focus-visible:ring-2 cursor-pointer",
+                themeHoverText,
+                themeRing
+              )}
+            >
+              <Play size={18} fill="currentColor" />
+            </button>
+            <button
+              type="button"
+              aria-label="Toggle mute"
+              className={cn(
+                "p-2 rounded-lg text-white transition-colors outline-none focus-visible:ring-2 cursor-pointer",
+                themeHoverText,
+                themeRing
+              )}
+            >
+              <Volume2 size={18} fill="currentColor" />
+            </button>
+          </div>
+          <button
+            type="button"
+            aria-label="Maximize"
+            className={cn(
+              "p-2 rounded-lg text-white transition-colors outline-none focus-visible:ring-2 cursor-pointer",
+              themeHoverText,
+              themeRing
+            )}
+          >
+            <Maximize2 size={18} />
+          </button>
         </div>
       </div>
     </div>
