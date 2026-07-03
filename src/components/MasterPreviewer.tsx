@@ -12,19 +12,12 @@ export const MasterPreviewer: React.FC = () => {
   const isProduction = agents.find(a => a.id === 'production')?.status === 'working';
   const isComplete = agents.find(a => a.id === 'distribution')?.status === 'completed';
 
-  const themeText = {
-    indigo: 'text-indigo-400',
-    orange: 'text-orange-400',
-    emerald: 'text-emerald-400',
-    rose: 'text-rose-400',
-  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'text-indigo-400';
-
-  const themeBg = {
-    indigo: 'bg-indigo-500',
-    orange: 'bg-orange-500',
-    emerald: 'bg-emerald-500',
-    rose: 'bg-rose-500',
-  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || 'bg-indigo-500';
+  const themeColors = {
+    indigo: { bg: 'bg-indigo-500', text: 'text-indigo-400', hoverText: 'hover:text-indigo-400 focus-visible:text-indigo-400', ring: 'focus-visible:ring-indigo-500' },
+    orange: { bg: 'bg-orange-500', text: 'text-orange-400', hoverText: 'hover:text-orange-400 focus-visible:text-orange-400', ring: 'focus-visible:ring-orange-500' },
+    emerald: { bg: 'bg-emerald-500', text: 'text-emerald-400', hoverText: 'hover:text-emerald-400 focus-visible:text-emerald-400', ring: 'focus-visible:ring-emerald-500' },
+    rose: { bg: 'bg-rose-500', text: 'text-rose-400', hoverText: 'hover:text-rose-400 focus-visible:text-rose-400', ring: 'focus-visible:ring-rose-500' },
+  }[theme.primary as 'indigo' | 'orange' | 'emerald' | 'rose'] || { bg: 'bg-indigo-500', text: 'text-indigo-400', hoverText: 'hover:text-indigo-400 focus-visible:text-indigo-400', ring: 'focus-visible:ring-indigo-500' };
 
   return (
     <div className="relative h-full w-full rounded-3xl overflow-hidden bg-black border border-white/10 group">
@@ -39,7 +32,7 @@ export const MasterPreviewer: React.FC = () => {
                exit={{ opacity: 0 }}
                className="flex flex-col items-center gap-4"
              >
-               <Loader2 className={cn("h-12 w-12 animate-spin", themeText)} />
+               <Loader2 className={cn("h-12 w-12 animate-spin", themeColors.text)} />
                <p className="text-white/60 font-medium animate-pulse text-sm">Assembling final frames...</p>
              </motion.div>
           ) : isComplete ? (
@@ -55,7 +48,7 @@ export const MasterPreviewer: React.FC = () => {
                 alt="AI Generated Preview"
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                 <div className={cn("p-6 rounded-full text-white shadow-2xl", themeBg)}>
+                 <div className={cn("p-6 rounded-full text-white shadow-2xl", themeColors.bg)}>
                     <Play size={48} fill="white" />
                  </div>
               </div>
@@ -65,7 +58,7 @@ export const MasterPreviewer: React.FC = () => {
                     initial={{ width: 0 }}
                     animate={{ width: '100%' }}
                     transition={{ duration: 10, repeat: Infinity }}
-                    className={cn("h-full", themeBg)}
+                    className={cn("h-full", themeColors.bg)}
                   />
                 </div>
               </div>
@@ -108,13 +101,31 @@ export const MasterPreviewer: React.FC = () => {
       </div>
 
       {/* Controls Overlay */}
-      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
         <div className="flex items-center justify-between">
-           <div className="flex gap-4">
-              <Play size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-              <Volume2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-           </div>
-           <Maximize2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+          <div className="flex gap-2">
+            <button
+              type="button"
+              aria-label="Play video"
+              className={cn("p-2 rounded-lg text-white transition-colors outline-none focus-visible:ring-2", themeColors.hoverText, themeColors.ring)}
+            >
+              <Play size={18} fill="currentColor" />
+            </button>
+            <button
+              type="button"
+              aria-label="Toggle mute"
+              className={cn("p-2 rounded-lg text-white transition-colors outline-none focus-visible:ring-2", themeColors.hoverText, themeColors.ring)}
+            >
+              <Volume2 size={18} fill="currentColor" />
+            </button>
+          </div>
+          <button
+            type="button"
+            aria-label="Maximize"
+            className={cn("p-2 rounded-lg text-white transition-colors outline-none focus-visible:ring-2", themeColors.hoverText, themeColors.ring)}
+          >
+            <Maximize2 size={18} />
+          </button>
         </div>
       </div>
     </div>
