@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2024-05-12 - [Accessible Overlays & Semantic Buttons]
+**Learning:** Decorative icon-only controls (like video playback) and status indicators are often overlooked in keyboard navigation. Simply adding an 'onClick' to a 'div' or 'svg' is insufficient for accessibility.
+**Action:** Always use semantic '<button type="button">' for interactive elements. For hover-triggered overlays, use 'group-focus-within' to ensure visibility when internal elements receive keyboard focus. Standardize focus rings using 'focus-visible:ring-2' with theme-aware colors to maintain visual delight for power users.

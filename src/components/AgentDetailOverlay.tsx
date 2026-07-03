@@ -115,18 +115,20 @@ export const AgentDetailOverlay: React.FC<AgentDetailOverlayProps> = ({ agent, o
           <div className="flex gap-4">
             {agent.status === 'working' && (
               <button
+                type="button"
                 onClick={() => {
                   updateAgentStatus(agent.id, 'completed');
                   onClose();
                 }}
-                className="flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition-colors"
+                className="flex-1 py-4 rounded-2xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
               >
                 Approve & Continue
               </button>
             )}
             <button
+              type="button"
               onClick={onClose}
-              className="flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-colors border border-white/5"
+              className="flex-1 py-4 rounded-2xl bg-white/5 text-white font-bold hover:bg-white/10 transition-colors border border-white/5 outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
             >
               Dismiss
             </button>
