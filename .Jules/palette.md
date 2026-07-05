@@ -9,3 +9,7 @@
 ## 2024-05-11 - [Thematic Consistency]
 **Learning:** Brand identity (Brand Kit) should be deeply integrated into the UX, not just a skin.
 **Action:** Implemented a `BrandKit` module that synchronizes colors across "Flow Indicators," "Master Previewer," and "Agent Tiles" to reinforce brand ownership throughout the automated process.
+
+## 2026-07-05 - [Keyboard Accessible Overlays]
+**Learning:** Overlays that appear only on hover (like video controls) are inaccessible to keyboard users unless they are also triggered by focus within the container.
+**Action:** Use Tailwind's `group-focus-within` or similar CSS logic to ensure interactive overlays become visible when any child element receives focus, maintaining parity between mouse and keyboard experiences.
