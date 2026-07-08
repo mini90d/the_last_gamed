@@ -108,13 +108,49 @@ export const MasterPreviewer: React.FC = () => {
       </div>
 
       {/* Controls Overlay */}
-      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute bottom-0 inset-x-0 p-4 translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 transition-transform bg-gradient-to-t from-black/80 to-transparent">
         <div className="flex items-center justify-between">
-           <div className="flex gap-4">
-              <Play size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-              <Volume2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
-           </div>
-           <Maximize2 size={18} className="text-white hover:text-indigo-400 cursor-pointer" />
+          <div className="flex gap-2">
+            <button
+              type="button"
+              aria-label="Play video"
+              className={cn(
+                "p-2 rounded-lg text-white transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black cursor-pointer",
+                theme.primary === 'indigo' && "hover:text-indigo-400 focus-visible:ring-indigo-500",
+                theme.primary === 'orange' && "hover:text-orange-400 focus-visible:ring-orange-500",
+                theme.primary === 'emerald' && "hover:text-emerald-400 focus-visible:ring-emerald-500",
+                theme.primary === 'rose' && "hover:text-rose-400 focus-visible:ring-rose-500"
+              )}
+            >
+              <Play size={18} fill="currentColor" />
+            </button>
+            <button
+              type="button"
+              aria-label="Toggle mute"
+              className={cn(
+                "p-2 rounded-lg text-white transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black cursor-pointer",
+                theme.primary === 'indigo' && "hover:text-indigo-400 focus-visible:ring-indigo-500",
+                theme.primary === 'orange' && "hover:text-orange-400 focus-visible:ring-orange-500",
+                theme.primary === 'emerald' && "hover:text-emerald-400 focus-visible:ring-emerald-500",
+                theme.primary === 'rose' && "hover:text-rose-400 focus-visible:ring-rose-500"
+              )}
+            >
+              <Volume2 size={18} />
+            </button>
+          </div>
+          <button
+            type="button"
+            aria-label="Maximize"
+            className={cn(
+              "p-2 rounded-lg text-white transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black cursor-pointer",
+              theme.primary === 'indigo' && "hover:text-indigo-400 focus-visible:ring-indigo-500",
+              theme.primary === 'orange' && "hover:text-orange-400 focus-visible:ring-orange-500",
+              theme.primary === 'emerald' && "hover:text-emerald-400 focus-visible:ring-emerald-500",
+              theme.primary === 'rose' && "hover:text-rose-400 focus-visible:ring-rose-500"
+            )}
+          >
+            <Maximize2 size={18} />
+          </button>
         </div>
       </div>
     </div>

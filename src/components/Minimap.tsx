@@ -25,9 +25,10 @@ export const Minimap: React.FC = () => {
                 <span>Agent Workflow</span>
               </div>
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close minimap"
-                className="p-1 rounded-lg hover:bg-white/5 text-white/40 hover:text-white transition-colors"
+                className="p-1 rounded-lg hover:bg-white/5 text-white/40 hover:text-white transition-colors cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-indigo-500"
               >
                 <X size={16} />
               </button>
@@ -38,14 +39,16 @@ export const Minimap: React.FC = () => {
               {agents.map((agent) => (
                 <button
                   key={agent.id}
+                  type="button"
                   onClick={() => setActiveAgentId(agent.id)}
                   className={cn(
-                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10",
+                    "h-2 rounded-full transition-all duration-500 hover:scale-125 hover:z-10 cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-black focus-visible:ring-white",
                     agent.status === 'idle' ? "bg-white/10" :
                     agent.status === 'working' ? "bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]" :
                     agent.status === 'completed' ? "bg-green-400" : "bg-red-400"
                   )}
                   title={agent.name}
+                  aria-label={`Focus agent: ${agent.name}`}
                 />
               ))}
             </div>
@@ -80,12 +83,13 @@ export const Minimap: React.FC = () => {
           </motion.div>
         ) : (
           <motion.button
+            type="button"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 font-medium"
+            className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 font-medium cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <Map size={20} />
             <span>Show Map</span>
